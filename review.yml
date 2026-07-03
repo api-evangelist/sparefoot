@@ -1,0 +1,95 @@
+aid: sparefoot
+name: SpareFoot
+review:
+  question: Does SpareFoot expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-03'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. SpareFoot does not publish any public
+    API surface for this review to model a transport for - there is no
+    request/response REST reference, and no server-push WebSocket or SSE
+    mechanism is documented either. The only technical integration path
+    described anywhere in SpareFoot's own support content is a one-way,
+    partner-built data feed running inside each property-management vendor's
+    own software (Storable Edge, SiteLink, Storable Easy, Self Storage
+    Manager, eDOMICO, DoorSwap), with no protocol, schema, or endpoint detail
+    disclosed publicly.
+findings:
+  summary: |
+    SpareFoot does not expose a documented public API of any kind -
+    WebSocket, REST, or otherwise - let alone one gated by NDA the way
+    sibling brand SiteLink's SOAP API is. SpareFoot is the storage-unit
+    listing marketplace owned by Storable (alongside storEDGE and SiteLink,
+    cataloged separately at api-evangelist/storable). Its own support
+    knowledge base (support.sparefoot.com) lists integrations with six
+    property-management software vendors - Storable Edge, SiteLink Web
+    Edition, Storable Easy, Self Storage Manager (E-SoftSys), eDOMICO, and
+    DoorSwap - describing how each vendor's software "includes a data feed
+    (API)" that pushes facility, unit, pricing, availability, and promotion
+    data into the SpareFoot marketplace, and receives reservation/lead data
+    back. None of those articles, nor any other public SpareFoot page found
+    during this review, discloses an endpoint list, request/response schema,
+    authentication scheme, base URL, or rate limit for that feed mechanism.
+    A facility or software vendor cannot self-serve an API key; onboarding
+    happens through SpareFoot/Storable's partner integrations team
+    (historically reachable at support@sparefoot.com). No WebSocket, SSE, or
+    any other realtime transport is mentioned anywhere in that material.
+  brandFamily: |
+    SpareFoot, Inc. was founded independently in 2008 in Austin, Texas, and
+    later combined with SiteLink and storEDGE under the Storable brand
+    (Storable acquired SiteLink in 2018; the three brands were unified as
+    Storable in 2019). SpareFoot remains the consumer-facing marketplace/lead-
+    generation side of that family; storEDGE and SiteLink are the property-
+    management-system side, each with its own API documented in the separate
+    api-evangelist/storable entry. This entry intentionally does not restate
+    storEDGE/SiteLink API detail - it covers only what SpareFoot itself, as
+    the marketplace, discloses about how data reaches it.
+  transports:
+    - protocol: REST
+      scheme: https
+      documented: false
+      note: No public REST API reference exists for SpareFoot. The "data feed (API)" language in SpareFoot's own integration articles describes a mechanism internal to each PMS vendor's software, not a documented endpoint set third parties can call directly.
+    - protocol: Webhook
+      scheme: https
+      documented: false
+      note: Not documented publicly. Some inbound lead/reservation delivery to facility software is plausible given the two-way sync described, but no webhook contract is published.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in SpareFoot's support content or marketing pages as of the review date.
+  endpointsConfirmedRest: []
+  endpointsModeled: false
+  endpointsModeledNote: |
+    No endpoints are listed in apis.yml for this entry, and none are modeled
+    here, because no public documentation - not even an NDA-gated reference
+    the way SiteLink's SOAP API has one - discloses any endpoint, method, or
+    schema for the SpareFoot integration feed. Fabricating an endpoint list
+    would misrepresent an access model that is, in reality, a closed,
+    partner-built data pipe with no publicly readable contract.
+sources:
+  - url: https://support.sparefoot.com/
+    type: Documentation
+    note: SpareFoot Marketplace knowledge base; lists Storable Edge, SiteLink Web Edition, Storable Easy, Self Storage Manager (E-SoftSys), eDOMICO, and DoorSwap integration articles. No API/data-feed technical spec is published.
+  - url: https://www.sitelink.com/marketplace/listing-services/sparefoot
+    type: Documentation
+    note: Describes the SiteLink-SpareFoot data feed at a marketing level (price/availability sync); no endpoint or schema detail.
+  - url: https://www.sitelink.com/solutions/integrations-partners
+    type: Documentation
+    note: Confirms the SiteLink API gives third-party vendors like SpareFoot access to facility data, without disclosing the mechanism.
+  - url: https://github.com/SpareFoot
+    type: SourceCode
+    note: SpareFoot's public GitHub organization contains internal infrastructure/data-engineering forks (Airflow, Zappa, Amundsen); no public API client, SDK, or spec repository.
+  - url: https://en.wikipedia.org/wiki/SpareFoot
+    type: Documentation
+    note: Company background - founded 2008, acquired SiteLink in 2018, unified under the Storable brand with storEDGE in 2019.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket, SSE, or other server-push protocol surface exists, and no
+    request/response REST surface is publicly documented either, so no
+    AsyncAPI or OpenAPI document was created. apis.yml documents SpareFoot's
+    access model honestly as a partner-gated, undisclosed data feed rather
+    than listing fabricated APIs.

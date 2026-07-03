@@ -1,0 +1,90 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: SpareFoot
+providerId: sparefoot
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Self Storage
+- Marketplace
+- Lead Generation
+- Referral Fee
+- Plans
+description: >-
+  SpareFoot does not sell API or data-feed access as a metered developer
+  product - there is no per-call or per-request price list because there is
+  no self-serve API. What is priced is marketplace participation itself: a
+  self-storage facility (or the software vendor integrating on its behalf)
+  is charged for the leads/reservations SpareFoot's marketplace and its
+  listing feed drive, not for calling an endpoint. Historically this was sold
+  as "RentPercent" pricing - a percentage of the rent collected from each
+  verified move-in, billed for the tenant's length of stay - a model
+  third-party sources say is no longer offered to new SpareFoot clients.
+  Current facility agreements are understood to be negotiated
+  cost-per-reservation or percentage-of-rent arrangements set directly with
+  SpareFoot/Storable's sales team; no public self-serve price list exists.
+notes: >-
+  No first-party pricing page for SpareFoot facility partners could be
+  located during this review (the specific "How Are SpareFoot Fees
+  Calculated (RentPercent Pricing)" support article returned 404 at review
+  time). The RentPercent model and its retirement are corroborated by
+  independent consumer-review and self-storage-operator sources rather than
+  a live Storable/SpareFoot document; verify current terms directly with
+  SpareFoot/Storable sales before relying on this for a real integration.
+sources:
+- https://www.movebuddha.com/blog/sparefoot-review/
+- https://www.selfstoragetalk.com/forum/general-self-storage-forums/technology-software-and-security/183961-monopoly-from-sitelink-sparefoot-storedge
+- https://support.sparefoot.com/
+plans:
+- id: sparefoot-rentpercent-legacy
+  name: RentPercent (Legacy, Reported Retired for New Clients)
+  type: paid
+  description: >-
+    Facility pays SpareFoot a percentage of the rent collected from each
+    SpareFoot-sourced, verified move-in, billed for the tenant's full length
+    of stay. Reported by third-party sources as no longer offered to new
+    SpareFoot clients as of this review.
+  entries:
+  - label: Percentage of Rent Collected
+    name: rentpercent
+    type: usage
+    metric: verified_move_in
+    limit: -1
+    timeFrame: tenancy
+    geo: US
+    unit: 1
+    price: percentage of collected rent per move-in (rate not publicly disclosed; third-party operator reports cite 2-5 months' equivalent rent over a tenancy)
+    userMultiplied: false
+  elements:
+  - name: Marketplace Listing
+  - name: Verified Reservation Leads
+- id: sparefoot-negotiated-partner-agreement
+  name: Negotiated Facility/Partner Agreement (Current)
+  type: enterprise
+  description: >-
+    Current facility participation - reached either directly or through a
+    property-management software partner's data-feed integration (Storable
+    Edge, SiteLink, Storable Easy, Self Storage Manager, eDOMICO, DoorSwap) -
+    is understood to be a negotiated cost-per-reservation or percentage-of-rent
+    agreement set with SpareFoot/Storable sales, not a published self-serve
+    tier.
+  entries:
+  - label: Negotiated Agreement
+    name: negotiated_agreement
+    type: flat
+    metric: facility
+    limit: -1
+    timeFrame: contract
+    geo: US
+    unit: 1
+    price: contact SpareFoot/Storable sales
+    userMultiplied: false
+  elements:
+  - name: Marketplace Listing
+  - name: Partner Data-Feed Integration (no public API)
+  - name: Reservation/Lead Delivery
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
