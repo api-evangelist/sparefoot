@@ -32,6 +32,8 @@ created: '2026-07-03'
 modified: '2026-07-03'
 specificationVersion: '0.19'
 common:
+- type: DomainSecurity
+  url: security/sparefoot-domain-security.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/sparefoot
 - type: Website
