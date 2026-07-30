@@ -16,7 +16,19 @@ description: SpareFoot is the largest online marketplace for finding and reservi
   a facility operator or software vendor must go through SpareFoot/Storable's
   integrations team to be onboarded. This entry documents that access model
   honestly rather than fabricating an API surface.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: approval
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Requires approval
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sparefoot.png
 tags:
 - Self Storage
 - Marketplace
