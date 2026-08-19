@@ -1,0 +1,130 @@
+generated: '2026-08-14'
+method: probed
+source: live GET of /.well-known/* on every SpareFoot host
+provider: SpareFoot
+providerId: sparefoot
+description: >-
+  Probe of the RFC 8615 well-known namespace on every host SpareFoot operates.
+  NOTHING WAS FOUND. www.sparefoot.com answers HTTP 200 with the site's own HTML
+  application shell for EVERY /.well-known/* path requested - including paths that
+  cannot exist - so each 200 below is a catch-all route, not a served document.
+  This is the dominant false-positive on this probe and it is recorded as a MISS.
+  support.sparefoot.com (Aha! knowledge base) and marketing.sparefoot.com return a
+  real 404. No WellKnown or SecurityTxt pointer is emitted in apis.yml, because
+  SpareFoot does not serve any of these documents.
+hosts:
+- host: www.sparefoot.com
+  note: >-
+    SPA/CDN catch-all - returns 200 text/html (the SpareFoot marketplace page) for
+    every /.well-known/* path, including nonexistent ones. Treated as a miss.
+  paths:
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/html
+    document: false
+    file: null
+    note: HTML application shell, not an RFC 9116 security.txt
+  - path: /security.txt
+    status: 200
+    content_type: text/html
+    document: false
+    file: null
+    note: HTML application shell
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: text/html
+    document: false
+    file: null
+    note: HTML application shell, not JSON
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: text/html
+    document: false
+    file: null
+    note: HTML application shell, not JSON
+  - path: /.well-known/api-catalog
+    status: 200
+    content_type: text/html
+    document: false
+    file: null
+    note: HTML application shell, not an RFC 9727 api-catalog
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    content_type: text/html
+    document: false
+    file: null
+    note: HTML application shell, not JSON
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: text/html
+    document: false
+    file: null
+    note: HTML application shell - NOT an A2A AgentCard. No a2a/ artifact was written.
+  - path: /.well-known/agent.json
+    status: 200
+    content_type: text/html
+    document: false
+    file: null
+    note: HTML application shell - NOT a legacy A2A AgentCard.
+  - path: /llms.txt
+    status: 200
+    content_type: text/plain
+    document: true
+    file: ../llms/sparefoot-llms.txt
+    note: >-
+      REAL HIT, but it lives at the site root rather than under /.well-known/.
+      946 bytes of text/plain, saved verbatim to llms/sparefoot-llms.txt and wired
+      as type LLMsTxt.
+  - path: /robots.txt
+    status: 200
+    content_type: text/plain
+    document: true
+    file: null
+    note: >-
+      Served. Notable for the agent-access posture rather than for discovery -
+      GPTBot is allowed, while ChatGPT-User, CCBot, anthropic-ai and Claude-Web are
+      each Disallow / . Not saved as an artifact.
+- host: support.sparefoot.com
+  note: Aha! knowledge base (SpareFoot Marketplace Knowledge Base). Real 404s.
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    document: false
+    file: null
+  - path: /llms.txt
+    status: 404
+    document: false
+    file: null
+- host: marketing.sparefoot.com
+  note: Facility-operator marketing site. Real 404s.
+  paths:
+  - path: /.well-known/agent-card.json
+    status: 404
+    document: false
+    file: null
+  - path: /llms.txt
+    status: 404
+    document: false
+    file: null
+- host: docs.sparefoot.com
+  note: >-
+    DNS resolves (Cloudflare), but every request answered HTTP 403 with a Cloudflare
+    "Just a moment..." bot interstitial. Not probed further; challenges are not evaded.
+  paths:
+  - path: /
+    status: 403
+    document: false
+    file: null
+summary:
+  hosts_probed: 4
+  paths_probed: 16
+  documents_found: 1
+  documents_found_note: >-
+    Only /llms.txt on www.sparefoot.com. No security.txt, no api-catalog, no
+    OIDC/OAuth metadata, no ai-plugin, no agent card.
+  well_known_pointer_emitted: false
+  security_txt_pointer_emitted: false
+  agent_card_pointer_emitted: false
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

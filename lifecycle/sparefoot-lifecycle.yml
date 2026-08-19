@@ -1,0 +1,82 @@
+generated: '2026-08-14'
+method: searched
+source: >-
+  https://status.storable.com/ and its Statuspage summary API
+  (https://status.storable.com/api/v2/summary.json), plus the SpareFoot Marketplace
+  Knowledge Base at https://support.sparefoot.com/
+provider: SpareFoot
+providerId: sparefoot
+description: >-
+  SpareFoot's operational lifecycle surface is a status page it shares with the rest
+  of the Storable brand family, and nothing else. There is no API version scheme, no
+  deprecation policy, no Sunset/Deprecation header contract (RFC 8594), no published
+  SLA, and no dated changelog or release notes - because there is no public SpareFoot
+  API to version or deprecate.
+status_page:
+  present: true
+  url: https://status.storable.com/
+  platform: Atlassian Statuspage
+  page_id: s4gmrwnlryz7
+  page_name: Storable
+  covers_sparefoot: true
+  sparefoot_components:
+  - name: MySpareFoot
+    component_id: z42649vcs2cw
+    type: group
+    started: '2023-11-28'
+    note: >-
+      The MySpareFoot facility-operator portal (https://my.sparefoot.com/) is a
+      top-level component group on the Storable status page. This is the only
+      SpareFoot-branded surface on the page.
+  note: >-
+    OWNERSHIP: status.storable.com is the parent-brand status page - Storable owns
+    SpareFoot alongside SiteLink, storEDGE/Storable Edge, Storable Easy, Storable
+    Payments and Storable Websites - and it names a SpareFoot component explicitly, so
+    it legitimately covers this provider. Worth recording: the page carries separate
+    components named "SiteLink API (Third-party integrations)", "Storable Easy API
+    (Third-party integrations)" and "Storable Edge API (Third-party integrations)" -
+    and NO equivalent SpareFoot API component. The sibling brands' integration APIs are
+    tracked as first-class operational surfaces; SpareFoot's marketplace data feed is not.
+  subscribe:
+    email: true
+    sms: true
+    rss: null
+  api:
+    statuspage_summary: https://status.storable.com/api/v2/summary.json
+    note: >-
+      Standard Atlassian Statuspage v2 API, publicly readable. Not a SpareFoot API -
+      it is Atlassian's, hosted for Storable - so it is not registered as an apis[] entry.
+versioning:
+  present: false
+  scheme: null
+  note: >-
+    No API version scheme is published. The facility-side data feed described in the
+    knowledge base is built and versioned inside each property-management vendor's own
+    software, not by SpareFoot.
+deprecation_policy:
+  present: false
+  url: null
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No deprecation or sunset policy is published, and no RFC 8594 Sunset/Deprecation
+    header contract is documented. No `Deprecation` pointer is emitted.
+sla:
+  present: false
+  url: null
+  note: >-
+    No uptime SLA is published for the marketplace or for the facility data feed.
+    Facility agreements are negotiated privately with SpareFoot/Storable sales.
+changelog:
+  present: false
+  url: null
+  note: >-
+    No dated product changelog or release notes exist for SpareFoot. The Storable status
+    page carries incident history, which is an availability log rather than a changelog,
+    so no changelog/ artifact was written.
+deprecated_operations: []
+deprecated_operations_note: >-
+  None derivable - the repo holds no OpenAPI to read deprecation flags from.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

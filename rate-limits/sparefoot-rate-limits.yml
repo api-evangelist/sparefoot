@@ -1,0 +1,44 @@
+generated: '2026-08-14'
+method: searched
+source: >-
+  https://support.sparefoot.com/ (SpareFoot Marketplace Knowledge Base, including the
+  full Marketplace Integrations section), https://marketing.sparefoot.com/,
+  https://www.sparefoot.com/robots.txt
+provider: SpareFoot
+providerId: sparefoot
+description: >-
+  SpareFoot publishes no rate limits, because it publishes no callable API. The only
+  throughput figure disclosed anywhere in its own documentation is a data-refresh
+  cadence, not a request quota: the Marketplace integration overview states that "All
+  of our integrations automatically update unit availability and pricing hourly." That
+  is the frequency at which a partner property-management system pushes into
+  SpareFoot's platform, not a limit an API consumer can observe or plan against.
+limit_count: 0
+limits: []
+response_headers: []
+response_headers_note: >-
+  None documented and none observable - there is no public request surface to elicit
+  X-RateLimit-*, RateLimit-* or Retry-After headers from.
+exhaustion_status: null
+observed:
+- surface: partner data-feed integration
+  cadence: hourly
+  scope: per-facility, push from the property-management vendor's software
+  quote: All of our integrations automatically update unit availability and pricing hourly.
+  source: >-
+    https://support.sparefoot.com/sparefoot-marketplace/account-management/marketplace-integrations/integration-with-storable-marketplace/integration-with-storable-marketplace-overview~7603116932556493992
+  note: >-
+    Recorded as a refresh cadence, NOT a rate limit. It is a property of the feed
+    SpareFoot receives from partners, and it is not expressed as a quota, window, or
+    burst that any consumer can measure.
+crawl_policy:
+  source: https://www.sparefoot.com/robots.txt
+  status: 200
+  note: >-
+    The only machine-readable throughput directive SpareFoot serves is a robots.txt
+    crawl-delay of 1s, scoped to a single named crawler (claritybot). The same file
+    allows GPTBot and disallows ChatGPT-User, CCBot, anthropic-ai and Claude-Web
+    outright - an agent-access posture, not a rate limit, and not counted above.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,97 @@
+generated: '2026-08-14'
+method: searched
+source: >-
+  https://trust.storable.com/ (Vanta trust center),
+  https://www.storable.com/.well-known/security.txt,
+  https://support.sparefoot.com/ (SpareFoot Marketplace Knowledge Base),
+  https://status.storable.com/
+provider: SpareFoot
+providerId: sparefoot
+description: >-
+  Assertions about cross-cutting industry standards and published compliance programs
+  for SpareFoot. Every entry below is `conforms: false`. SpareFoot publishes no
+  machine-readable contract, so no standard can be asserted from a spec; and the one
+  compliance program in the Storable family that could have been cited EXPLICITLY
+  EXCLUDES SpareFoot from its scope. No `Compliance` and no `TrustCenter` pointer is
+  emitted in apis.yml.
+conformance:
+- id: openapi
+  conforms: false
+  evidence: >-
+    No OpenAPI or Swagger document is published. Probed /openapi.json and /swagger.json
+    on www.sparefoot.com (403 Cloudflare interstitial); no api.sparefoot.com,
+    developer.sparefoot.com or developers.sparefoot.com DNS record exists;
+    docs.sparefoot.com resolves but answers 403 behind a bot challenge.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    No event, streaming, or webhook contract is published. The facility data feed is
+    described in prose only, with no protocol, schema, or endpoint disclosed.
+- id: graphql
+  conforms: false
+  evidence: No /graphql surface is documented or discoverable on any SpareFoot host.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    No OAuth 2.0 surface. /.well-known/oauth-authorization-server on www.sparefoot.com
+    returned 200 with the site's HTML shell, not authorization-server metadata.
+- id: oidc
+  conforms: false
+  evidence: >-
+    /.well-known/openid-configuration on www.sparefoot.com returned 200 with the site's
+    HTML shell, not an OpenID Provider configuration document.
+- id: rfc9457
+  conforms: false
+  evidence: >-
+    No error contract is published, so no application/problem+json envelope can be
+    asserted.
+- id: rfc9116
+  conforms: false
+  evidence: >-
+    No security.txt. www.sparefoot.com/.well-known/security.txt answers 200 with the
+    HTML application shell (catch-all, not a document); support.sparefoot.com returns
+    404; www.storable.com/.well-known/security.txt returns a real 404.
+- id: rfc8594
+  conforms: false
+  evidence: No Sunset/Deprecation header policy is documented. See lifecycle/.
+- id: idempotency
+  conforms: false
+  evidence: No idempotency semantics are documented; there is no public request surface.
+- id: pagination
+  conforms: false
+  evidence: No pagination convention is documented; there is no public request surface.
+compliance_programs:
+  published: false
+  trust_center:
+    exists_for_parent: true
+    url: https://trust.storable.com/
+    platform: Vanta
+    title: Storable Payments Trust Center
+    covers_sparefoot: false
+    products_in_scope:
+    - Sitelink by Storable
+    - Storable CRM
+    - Storable Easy
+    - Storable Edge
+    - Storable Molo
+    - Storable Newbook
+    - Storable Payments
+    evidence: >-
+      The trust center's own description enumerates the products it covers, verbatim:
+      "The following Storable products are included in the trust and security portal:
+      Sitelink by Storable / Storable CRM / Storable Easy / Storable Edge /
+      Storable Molo / Storable Newbook / Storable Payments." SpareFoot is not on that
+      list, even though it is a Storable brand and appears on the shared status page.
+    note: >-
+      OWNERSHIP RULE APPLIED. It would have been easy - and wrong - to credit SpareFoot
+      with the parent's SOC 2 / PCI posture because trust.storable.com sits inside the
+      same corporate family. The trust center says in its own words which products it
+      covers, and SpareFoot is not one of them. No `Compliance`, `TrustCenter` or
+      certification claim is recorded for SpareFoot on this evidence.
+  certifications: []
+  certifications_note: >-
+    No SOC 2, ISO 27001, PCI DSS, HIPAA or FedRAMP certification is claimed for
+    SpareFoot on any first-party SpareFoot page.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

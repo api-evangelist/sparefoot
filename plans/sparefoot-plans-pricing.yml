@@ -1,11 +1,17 @@
 specification: API Commons Plans
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+generated: '2026-08-14'
+method: searched
+source: >-
+  https://marketing.sparefoot.com/ (SpareFoot's own facility-operator site) and
+  https://support.sparefoot.com/sparefoot-marketplace/account-management/billing
 provider: SpareFoot
 providerId: sparefoot
 created: '2026-07-03'
-modified: '2026-07-03'
+modified: '2026-08-14'
 reconciled: false
+plan_count: 3
 tags:
 - Self Storage
 - Marketplace
@@ -26,14 +32,19 @@ description: >-
   cost-per-reservation or percentage-of-rent arrangements set directly with
   SpareFoot/Storable's sales team; no public self-serve price list exists.
 notes: >-
-  No first-party pricing page for SpareFoot facility partners could be
-  located during this review (the specific "How Are SpareFoot Fees
-  Calculated (RentPercent Pricing)" support article returned 404 at review
-  time). The RentPercent model and its retirement are corroborated by
-  independent consumer-review and self-storage-operator sources rather than
-  a live Storable/SpareFoot document; verify current terms directly with
-  SpareFoot/Storable sales before relying on this for a real integration.
+  2026-08-14 update: a FIRST-PARTY pricing statement was located this round, on
+  SpareFoot's own facility-operator site at https://marketing.sparefoot.com/ (HTTP 200).
+  It confirms the shape but publishes no numbers - listing is free with no signup fee,
+  and the facility "costs nothing unless a customer we send you moves in", with the
+  exact rate "based on storage demand in your area, as well as the amount of facilities
+  we already have on the network in your area." That is a pay-per-move-in model quoted
+  per market by sales, so there is still no self-serve price list, no rate card, and no
+  per-call or per-request price of any kind. The older RentPercent detail below remains
+  third-party-sourced (its support article is still 404) and should be treated as
+  historical; verify current terms directly with SpareFoot/Storable sales.
 sources:
+- https://marketing.sparefoot.com/
+- https://support.sparefoot.com/sparefoot-marketplace/account-management/billing~7601262768182850325
 - https://www.movebuddha.com/blog/sparefoot-review/
 - https://www.selfstoragetalk.com/forum/general-self-storage-forums/technology-software-and-security/183961-monopoly-from-sitelink-sparefoot-storedge
 - https://support.sparefoot.com/
@@ -85,6 +96,43 @@ plans:
   - name: Marketplace Listing
   - name: Partner Data-Feed Integration (no public API)
   - name: Reservation/Lead Delivery
+- id: sparefoot-pay-per-move-in
+  name: Marketplace Listing - Pay Per Move-In (First-Party, Current)
+  type: usage
+  description: >-
+    SpareFoot's own facility-operator site states the current model plainly: listing on
+    the marketplace is free with no signup fee, and the facility pays only when a
+    SpareFoot-referred customer actually moves in. No rate is published - "Your exact
+    pricing is based on storage demand in your area, as well as the amount of facilities
+    we already have on the network in your area" - so the number is quoted per market by
+    SpareFoot's team. Sign-up is self-serve at https://my.sparefoot.com/signup-start.
+  entries:
+  - label: Per Verified Move-In
+    name: pay_per_move_in
+    type: usage
+    metric: verified_move_in
+    limit: -1
+    timeFrame: perMoveIn
+    geo: US
+    unit: 1
+    price: not published - quoted per market by SpareFoot
+    userMultiplied: false
+  - label: Listing Fee
+    name: listing_fee
+    type: flat
+    metric: facility
+    limit: -1
+    timeFrame: month
+    geo: US
+    unit: 1
+    price: '0'
+    currency: USD
+    userMultiplied: false
+  elements:
+  - name: Marketplace Listing (free)
+  - name: Verified Move-In Billing
+  - name: Optional Management-Software Integration
+  source: https://marketing.sparefoot.com/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

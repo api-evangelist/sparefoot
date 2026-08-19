@@ -1,0 +1,77 @@
+generated: '2026-08-14'
+method: searched
+source: >-
+  npm registry search, PyPI, RubyGems, Packagist, crates.io, pkg.go.dev,
+  Maven Central, NuGet, and the SpareFoot GitHub organization
+  (https://github.com/SpareFoot) via the GitHub REST API
+provider: SpareFoot
+providerId: sparefoot
+description: >-
+  SpareFoot publishes NO first-party API client library, SDK, or CLI in any public
+  package registry. This is consistent with the rest of the profile: there is no
+  public SpareFoot API for an SDK to wrap. Every registry above was searched by name;
+  the single result under a SpareFoot-owned namespace is a 2015 fork of an unrelated
+  third-party PHP geocoding library, recorded below for completeness and explicitly
+  NOT an SDK. No `SDKs` pointer is emitted in apis.yml, because SpareFoot ships none.
+sdk_count: 0
+package_count: 1
+packages:
+- name: sparefoot/geocoder
+  language: php
+  registry: packagist
+  url: https://packagist.org/packages/sparefoot/geocoder
+  repository: https://github.com/artiegold-sparefoot/Geocoder
+  official: true
+  sdk: false
+  version: v3.3.0
+  published: '2015-12-06'
+  downloads_total: 20014
+  description: >-
+    "The almost missing Geocoder PHP 5.4 library." A fork of the community
+    willdurand/Geocoder package, published under a SpareFoot-owned Packagist vendor
+    namespace during SpareFoot's PHP era.
+  note: >-
+    NOT a SpareFoot API client. It geocodes addresses using third-party providers and
+    has nothing to do with the SpareFoot marketplace. Last tagged release v3.3.0 on
+    2015-12-06 (the 2.x-dev branch last moved 2016-07-18) - abandoned for roughly a
+    decade. Recorded so the registry footprint is on the record, not as evidence of a
+    developer program.
+registries_searched:
+- registry: npm
+  query: sparefoot
+  result: no first-party package
+- registry: pypi
+  query: sparefoot
+  result: 404 - no package
+- registry: rubygems
+  query: sparefoot
+  result: empty result set
+- registry: packagist
+  query: sparefoot
+  result: 1 package (sparefoot/geocoder, a third-party library fork)
+- registry: crates.io
+  query: sparefoot
+  result: no first-party package
+- registry: maven-central
+  query: sparefoot
+  result: no first-party package
+- registry: nuget
+  query: sparefoot
+  result: no first-party package
+- registry: pkg.go.dev
+  query: sparefoot
+  result: no first-party package
+github_organization:
+  url: https://github.com/SpareFoot
+  public_repos_reviewed: 23
+  first_party_api_clients: 0
+  note: >-
+    The SpareFoot GitHub organization is entirely internal-infrastructure and
+    data-engineering forks - Apache Airflow, Zappa, Amundsen, aiobotocore, kappa,
+    rollbar-php, jaeger-php, php-zipkin, a JavaScript style guide - plus a 2014
+    React/Flux slide deck. There is no API client, SDK, Postman collection, or
+    specification repository. Most repos have not been touched since 2015-2020;
+    the handful with 2026 timestamps are dependency-bot refreshes of forks.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
