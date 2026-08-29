@@ -20,6 +20,17 @@ description: SpareFoot is the largest online marketplace for finding and reservi
   crawler-directive-and-attribution file aimed at language models rather than a
   developer contract - alongside a robots.txt that allows GPTBot while disallowing
   ChatGPT-User, CCBot, anthropic-ai and Claude-Web.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: approval
