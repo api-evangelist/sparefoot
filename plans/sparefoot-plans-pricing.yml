@@ -136,3 +136,39 @@ plans:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - metered
+  - subscription
+  units:
+  - object
+  plans:
+  - name: RentPercent (Legacy, Reported Retired for New Clients)
+    access: paid
+    model: free
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Negotiated Facility/Partner Agreement (Current)
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - object
+    periods:
+    - term
+  - name: Marketplace Listing - Pay Per Move-In (First-Party, Current)
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - object
+    - other
+    periods:
+    - month
+    - other
